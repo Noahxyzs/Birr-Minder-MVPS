@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birr Minder</title>
+    <link rel="stylesheet" href="./css/foundation.css">
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+
+
+<body id="body">
+
+    <div class="row">
+        <div class="small-12 medium-8 large-9 columns">
+            <h3><span class="fi-calendar"></span> Birr Minder</h3>
+
+
+            <ul class="accordion" data-accordion>
+
+                <li class="accordion-item is-active" data-accordion-item>
+                    <a href="#" class="accordion-title">Income</a>
+                    <div class="accordion-content" data-tab-content>
+
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="firstCol">Name</th>
+                                    <th>Amount</th>
+                                    <th class="lastCol">Done</th>
+                                </tr>
+                            </thead>
+
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="sum">Total:</td>
+                                    <td colspan="2" data-bind="text: monthlyincomeTotal">0</td>
+                                </tr>
+                            </tfoot>
+
+                            <tbody data-bind="foreach: monthlyincome">
+                                <tr>
+                                    <td>
+                                        <a data-open="savingsModal">
+                                            <span class="fi-pencil size-18"></span>
+                                        </a>
+                                    </td>
+                                    <td data-bind="text: name"></td>
+                                    <td data-bind="text: amount"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
+
+                    </div>
+                </li>
+
+                <li class="accordion-item is-active" data-accordion-item>
+                    <a href="#" class="accordion-title">Expenses</a>
+                    <div class="accordion-content" data-tab-content>
+
+
+                        <table>
+                            <thead>
+                                <tr>
+
+                                    <th colspan="2" class="firstCol">Name</th>
+                                    <th>Amount</th>
+                                    <th class="lastCol">Done</th>
+                                </tr>
+                            </thead>
+
+
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="sum">Total:</td>
+                                    <td colspan="2" data-bind="text: monthlyexpensesTotal">0</td>
+                                </tr>
+                            </tfoot>
+
+                            <tbody data-bind="foreach: monthlyexpenses">
+                                <tr>
+                                    <td>
+                                        <a data-open="savingsModal">
+                                            <span class="fi-pencil size-18"></span>
+                                        </a>
+                                    </td>
+                                    <td data-bind="text: name"></td>
+                                    <td data-bind="text: amount"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </li>
+
+                <li class="accordion-item is-active" data-accordion-item>
+                    <a href="#" class="accordion-title">Savings</a>
+                    <div class="accordion-content" data-tab-content>
+                        <table>
+                            <thead>
+                                <tr>
+
+                                    <th colspan="2" class="firstCol">Name</th>
+                                    <th>Amount</th>
+                                    <th class="lastCol">Done</th>
+                                </tr>
+                            </thead>
+
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="sum">Total:</td>
+                                    <td colspan="2" data-bind="text: monthlysavingsTotal">0</td>
+                                </tr>
+                            </tfoot>
+
+                            <tbody data-bind="foreach: monthlysavings">
+                                <tr>
+                                    <td>
+                                        <a data-open="savingsModal">
+                                            <span class="fi-pencil size-18"></span>
+                                        </a>
+                                    </td>
+                                    <td data-bind="text: name"></td>
+                                    <td data-bind="text: amount"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </li>
+
+                <li class="accordion-item is-active" data-accordion-item>
+                    <a href="#" class="accordion-title">Debts</a>
+                    <div class="accordion-content" data-tab-content>
+
+
+
+                        <table>
+                            <thead>
+                                <tr>
+
+                                    <th colspan="2" class="firstCol">Name</th>
+                                    <th>Amount</th>
+                                    <th class="lastCol">Done</th>
+                                </tr>
+                            </thead>
+
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="sum">Total:</td>
+                                    <td colspan="2" data-bind="text: monthlydebtsTotal">0</td>
+                                </tr>
+                            </tfoot>
+
+                            <tbody data-bind="foreach: monthlydebts">
+                                <tr>
+                                    <td>
+                                        <a data-open="savingsModal">
+                                            <span class="fi-pencil size-18"></span>
+                                        </a>
+                                    </td>
+                                    <td data-bind="text: name"></td>
+                                    <td data-bind="text: amount"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </li>
+
+            </ul>
+
+
+        </div>
+
+        <div class="small-12 medium-4 large-3 columns">
+
+        <canvas id="myChart" width="400" height="400"></canvas>
+
+
+            <h3><span class="fi-dollar-bill"></span> Savings</h3>
+
+            <table>
+                <thead>
+                    <tr>
+
+                        <th colspan="2" width="80%">Name</th>
+                        <th>Value</th>
+                        <th>$ Yield</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: savings">
+                    <tr>
+                        <td>
+                            <a data-open="savingsModal">
+                                <span class="fi-pencil size-18"></span>
+                            </a>
+                        </td>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: balance"></td>
+                        <td data-bind="text: yield"></td>
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+            <a class="button small expanded" data-open="savingsModal">Add Savings</a>
+
+            <h3><span class="fi-like"></span> Assets</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>$ Yield</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: assets">
+                    <tr>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: balance"></td>
+                        <td data-bind="text: yield"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="button small expanded" data-open="assetsModal">Add Asset</a>
+
+            <h3><span class="fi-dislike"></span> Debts</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Balance</th>
+                        <th>Rate</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: debts">
+                    <tr>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: balance"></td>
+                        <td data-bind="text: rate"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a class="button small expanded" data-open="debtsModal">Add Debt</a>
+        </div>
+    </div>
+
+    <!-- Modals -->
+
+    <div class="reveal" id="savingsModal" data-reveal>
+        <h2>Savings</h2>
+        <p>
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <label>Name
+        <input type="text" placeholder="Bank">
+      </label>
+                </div>
+                <div class="small-12 columns">
+                    <label>Value
+        <input type="text" placeholder="1000">
+      </label>
+                </div>
+
+                <div class="small-12 columns">
+                    <label>Dollar Yield
+        <input type="text" placeholder="10">
+      </label>
+                </div>
+                <div class="small-12 columns">
+                    <button type="button" class="button expanded">Save</button>
+                    <button type="button" class="alert button expanded">Delete</button>
+                </div>
+            </div>
+
+
+        </p>
+
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+
+
+
+    <div class="reveal" id="assetsModal" data-reveal>
+        <h2>Assets</h2>
+        <p>
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <label>Name
+        <input type="text" placeholder="Bonds">
+      </label>
+                </div>
+                <div class="small-12 columns">
+                    <label>Value
+        <input type="text" placeholder="5000">
+      </label>
+                </div>
+
+                <div class="small-12 columns">
+                    <label>Dollar Yield
+        <input type="text" placeholder="50">
+      </label>
+                </div>
+                <div class="small-12 columns">
+                    <button type="button" class="button expanded">Save</button>
+                    <button type="button" class="alert button expanded">Delete</button>
+                </div>
+            </div>
+
+
+        </p>
+
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+
+
+    <div class="reveal" id="debtsModal" data-reveal>
+        <h2>Debts</h2>
+        <p>
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <label>Name
+        <input type="text" placeholder="Mortgage">
+      </label>
+                </div>
+                <div class="small-12 columns">
+                    <label>Balance
+        <input type="text" placeholder="200000">
+      </label>
+                </div>
+
+                <div class="small-12 columns">
+                    <label>Rate
+        <input type="text" placeholder="3.875">
+      </label>
+                </div>
+                <div class="small-12 columns">
+                    <button type="button" class="button expanded">Save</button>
+                    <button type="button" class="alert button expanded">Delete</button>
+                </div>
+            </div>
+
+
+        </p>
+
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+
+    <link rel="stylesheet" href="./css/foundation-icons.css" />
+
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === "object") { window.module = module; module = undefined; }
+    </script>
+
+    <!-- normal script imports etc  -->
+    <script src="./vendor/jquery.js"></script>
+    <script src="./vendor/knockout-3.4.2.js"></script>
+    <script src="./vendor/what-input.js"></script>
+    <script src="./vendor/foundation.js"></script>
+    <script src="./vendor/Chart.js"></script>
+    <script src="./app.js"></script>
+
+    <script>
+        // You can also require other files to run in this process
+        require("./renderer.js");
+    </script>
+</body>
+
+</html>
